@@ -87,7 +87,8 @@ Aplikacja będzie dostępna pod adresem: [http://localhost:8000](http://localhos
 ## 🐳 Uruchomienie w Dockerze (opcjonalnie)
 
 ```bash
-docker-compose up --build
+docker load -i cyfrowa_biblioteka.tar
+docker run -p 8000:8000 cyfrowa_biblioteka-web:latest
 ```
 
 Otwórz w przeglądarce: [http://localhost:8000](http://localhost:8000)

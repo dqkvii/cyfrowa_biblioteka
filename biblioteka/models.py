@@ -10,11 +10,11 @@ class Book(models.Model):
         ('drama', 'Drama'),
         ('thriller', 'Thriller'),
         ('romance', 'Romance'),
-        ('history', 'Historical'),
+        ('horror', 'Horror'),
         ('other', 'Other'),
     ]
 
-    YEAR_CHOICES = [(year, year) for year in range(1971, 2025)]
+    YEAR_CHOICES = [(year, year) for year in range(1800, 2025)]
 
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=100)
