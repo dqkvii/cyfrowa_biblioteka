@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista książek</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="container mt-4">
+    <h1>📚 Cyfrowa Biblioteka</h1>
+
+    <div class="row">
+        <!-- Левая часть: фильтр по жанрам -->
+        <div class="col-md-3">
+            <h5>🎭 Filtruj wg gatunku:</h5>
+            <ul class="list-group">
+                <a href="{% url 'book_list' %}" class="list-group-item {% if not current_genre %}active{% endif %}">
+                    Wszystkie
+                </a>
+                {% for code, name in genres %}
+                <a href="?genre={{ code }}" class="list-group-item {% if current_genre == code %}active{% endif %}">
+                    {{ name }}
+                </a>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Правая часть: таблица książek -->
+        <div class="col-md-9">
+            <form method="get" class="mb-3 d-flex">
+                {% if current_genre %}
+                    <input type="hidden" name="genre" value="{{ current_genre }}">
+                {% endif %}
+                <input type="text" name="q" class="form-control me-2" placeholder="Szukaj po tytule..." value="{{ search_query }}">
+                <button type="submit" class="btn btn-outline-primary">Szukaj</button>
+            </form>
+            <div style="display: flex; justify-content: flex-end;">
+                <a href="{% url 'book_create' %}" class="btn btn-success mb-3">Dodaj książkę</a>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Tytuł</th>
+                        <th>Autor</th>
+                        <th>Rok</th>
+                        <th>Gatunek</th>
+                        <th>Akcje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                    <tr>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.author }}</td>
+                        <td>{{ book.year }}</td>
+                        <td>{{ book.get_genre_display }}</td>
+                        <td>
+                            <a href="{% url 'book_detail' book.pk %}" class="btn btn-primary btn-sm">Szczegóły</a>
+                            <a href="{% url 'book_update' book.pk %}" class="btn btn-warning btn-sm">Edytuj</a>
+                            <a href="{% url 'book_delete' book.pk %}" class="btn btn-danger btn-sm">Usuń</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="5">Brak książek w tym gatunku.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
