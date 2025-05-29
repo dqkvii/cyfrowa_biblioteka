@@ -57,13 +57,13 @@ Interfejs użytkownika umożliwia również przeglądanie książek według gatu
 
 ```bash
 git clone https://github.com/dqkvii/cyfrowa_biblioteka.git
-cd cyfrowa-biblioteka
+cd cyfrowa_biblioteka
 ```
 
 2. Utwórz i aktywuj środowisko wirtualne:
 
 ```bash
-python -m venv venv
+python -m venv venv # Windows: py -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 ```
 
