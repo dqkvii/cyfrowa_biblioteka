@@ -56,7 +56,7 @@ Interfejs użytkownika umożliwia również przeglądanie książek według gatu
 1. Sklonuj repozytorium:
 
 ```bash
-git clone https://github.com/twoj-login/cyfrowa-biblioteka.git
+git clone https://github.com/dqkvii/cyfrowa_biblioteka.git
 cd cyfrowa-biblioteka
 ```
 
